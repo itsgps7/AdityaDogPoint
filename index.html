@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Dog Point | Best Pet Store in Ghazipur</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #FF7A00;
+            --primary-dark: #cc6200;
+            --dark: #2B2B2B;
+            --light: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #6C757D;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--dark); line-height: 1.6; overflow-x: hidden; position: relative;}
+        a { text-decoration: none; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
+
+        /* =========================================
+           🐶 ANIMAL ANIMATIONS & 3D EFFECTS 🐱
+           ========================================= */
+        .running-dog { position: fixed; bottom: 20px; font-size: 3.5rem; animation: runAcross 15s linear infinite; z-index: 9999; pointer-events: none; filter: drop-shadow(2px 5px 5px rgba(0,0,0,0.3)); }
+        @keyframes runAcross {
+            0% { left: -10%; transform: scaleX(1) translateY(0); }
+            10% { transform: scaleX(1) translateY(-15px); }
+            20% { transform: scaleX(1) translateY(0); }
+            49% { left: 110%; transform: scaleX(1) translateY(0); }
+            50% { left: 110%; transform: scaleX(-1) translateY(0); }
+            99% { left: -10%; transform: scaleX(-1) translateY(0); }
+            100% { left: -10%; transform: scaleX(1) translateY(0); }
+        }
+
+        .peek-cat { position: fixed; bottom: -60px; left: 30px; font-size: 4rem; animation: peekCat 8s ease-in-out infinite; z-index: 9998; pointer-events: none; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
+        @keyframes peekCat {
+            0%, 70%, 100% { transform: translateY(0) rotate(0deg); }
+            80% { transform: translateY(-70px) rotate(10deg); }
+            85% { transform: translateY(-70px) rotate(-10deg); }
+            90% { transform: translateY(-70px) rotate(0deg); }
+        }
+
+        .paw-print { position: fixed; color: rgba(255, 122, 0, 0.15); font-size: 2rem; pointer-events: none; z-index: 1; animation: floatUp linear infinite; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 10px rgba(255,122,0,0.5); transform: scale(1); } 50% { box-shadow: 0 0 25px rgba(255,122,0,0.8); transform: scale(1.05); } 100% { box-shadow: 0 0 10px rgba(255,122,0,0.5); transform: scale(1); } }
+
+        /* Header */
+        header { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 10000; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .logo-area { display: flex; align-items: center; }
+        .main-logo { height: 80px; width: auto; object-fit: contain; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2)); transition: transform 0.3s ease; border-radius: 10px; }
+        .main-logo:hover { transform: scale(1.1) rotate(5deg); }
+        
+        nav { display: flex; gap: 25px; }
+        nav a { color: var(--dark); font-weight: 600; transition: color 0.3s, transform 0.3s; font-size: 1rem; display: inline-block; }
+        nav a:hover { color: var(--primary); transform: translateY(-5px) scale(1.1); }
+
+        /* Hero - Updated Content */
+        .hero { margin-top: 100px; height: 75vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260') center/cover fixed; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); perspective: 1000px; position: relative; z-index: 10;}
+        .hero-content { animation: float 6s ease-in-out infinite; transform-style: preserve-3d; }
+        .hero h2 { font-size: 4rem; font-weight: 700; transform: translateZ(50px); text-shadow: 3px 3px 8px rgba(0,0,0,0.8); margin-bottom: 10px;}
+        .hero p { font-size: 1.3rem; margin-bottom: 30px; font-weight: 300; max-width: 700px; margin-left: auto; margin-right: auto; transform: translateZ(30px); color: #f1f1f1;}
+        .hero .highlight { color: var(--primary); font-weight: 700; font-size: 1.5rem; display: block; margin-bottom: 10px;}
+        .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--white); padding: 15px 40px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(255,122,0,0.4); transition: all 0.3s ease; border: none; cursor: pointer; transform: translateZ(40px); }
+        .btn:hover { transform: translateY(-5px) scale(1.05) translateZ(40px); box-shadow: 0 15px 25px rgba(255,122,0,0.6); }
+
+        /* Section Titles */
+        .section-title { text-align: center; margin: 80px 0 40px; position: relative; z-index: 10;}
+        .section-title h2 { font-size: 2.5rem; color: var(--dark); position: relative; display: inline-block; padding-bottom: 10px; }
+        .section-title h2::after { content: ''; position: absolute; width: 50%; height: 4px; background: var(--primary); bottom: 0; left: 25%; }
+
+        /* 3D Animated Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 60px; perspective: 1000px; position: relative; z-index: 10;}
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #eee; transform-style: preserve-3d; display: flex; flex-direction: column;}
+        .card:hover { transform: translateY(-20px) rotateX(5deg) rotateY(-3deg) scale(1.03); border-color: var(--primary); box-shadow: -10px 25px 50px rgba(0,0,0,0.2); z-index: 20;}
+        .card img { width: 100%; height: 240px; object-fit: cover; display: block; border-bottom: 4px solid var(--primary); transition: transform 0.5s ease; }
+        .card:hover img { transform: scale(1.1); }
+        .card-body { padding: 25px; text-align: center; background: white; transform: translateZ(30px); flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
+        .card-body h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 10px; font-weight: 700; }
+        
+        .brand-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 15px; }
+        .brand-tag { background: linear-gradient(145deg, #ffffff, #e6e6e6); color: var(--primary-dark); font-size: 0.85rem; padding: 6px 12px; border-radius: 20px; font-weight: 700; cursor: pointer; border: 1px solid #ddd; transition: all 0.3s; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);}
+        .brand-tag:hover { background: var(--primary); color: white; transform: scale(1.15) translateY(-5px); box-shadow: 0 10px 15px rgba(255,122,0,0.4); }
+
+        /* Breeds Grid - Expanded */
+        .category-sub { text-align: center; color: var(--primary); font-size: 1.8rem; margin: 50px 0 30px; font-weight: 700; position: relative; z-index: 10;}
+        .breeds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; position: relative; z-index: 10;}
+        .breed-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1); text-align: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;}
+        .breed-card:hover { transform: translateY(-15px) scale(1.08) rotate(2deg); border: 2px solid var(--primary); box-shadow: 0 15px 30px rgba(255,122,0,0.3);}
+        .breed-card img { width: 100%; height: 160px; object-fit: cover; transition: transform 0.4s; }
+        .breed-card:hover img { transform: scale(1.1); }
+        .breed-card h4 { padding: 10px 5px; font-size: 1rem; color: var(--dark); font-weight: 700; transform: translateZ(20px);}
+
+        /* Map Section */
+        .map-container { border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 4px solid var(--primary); margin-bottom: 50px; position: relative; z-index: 10; transition: transform 0.3s;}
+        .map-container:hover { transform: translateY(-10px) scale(1.01); }
+
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; backdrop-filter: blur(8px); }
+        .modal-content { background-color: white; border-radius: 20px; width: 90%; max-width: 400px; padding: 30px; text-align: center; position: relative; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 40px rgba(255,122,0,0.4); }
+        @keyframes popIn { from { transform: scale(0.5) rotateX(45deg); opacity: 0; } to { transform: scale(1) rotateX(0); opacity: 1; } }
+        .close-modal { position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; transition: transform 0.3s;}
+        .close-modal:hover { transform: rotate(90deg); color: red;}
+        .modal-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; border: 2px solid #eee;}
+        .modal-btn { background: linear-gradient(135deg, #25D366, #1da851); color: white; padding: 15px; border-radius: 10px; display: block; font-weight: 800; font-size: 1.2rem; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(37,211,102,0.4);}
+        .modal-btn:hover { transform: translateY(-3px) scale(1.05); }
+
+        /* Footer */
+        footer { background: linear-gradient(to bottom, #2B2B2B, #1a1a1a); color: var(--white); padding: 80px 0 40px; text-align: center; margin-top: 50px; box-shadow: inset 0 10px 20px rgba(0,0,0,0.5); position: relative; z-index: 10;}
+        .footer-logo { height: 130px; margin-bottom: 25px; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(255,122,0,0.3)); animation: float 4s infinite ease-in-out; border-radius: 10px;}
+        .footer-info p { margin: 12px 0; color: #ddd; font-size: 1.1rem;}
+        .social-btns { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .social-btn { padding: 12px 30px; border-radius: 30px; font-weight: 700; color: var(--white); transition: all 0.3s; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+        .social-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .btn-wa { background: #25D366; }
+        .btn-ig { background: #E1306C; }
+        
+        /* AI CHATBOT */
+        .chat-widget { position: fixed; bottom: 40px; right: 40px; z-index: 99999; }
+        .chat-toggle { width: 75px; height: 75px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: none; animation: pulseGlow 2s infinite; transition: transform 0.3s;}
+        .chat-toggle:hover { transform: scale(1.1) rotate(10deg); }
+        .chat-toggle svg { width: 40px; height: 40px; fill: white; }
+        .chat-box { width: 350px; background: white; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: none; flex-direction: column; overflow: hidden; position: absolute; bottom: 90px; right: 0; border: 2px solid var(--primary); animation: popIn 0.3s ease; }
+        .chat-header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 15px; font-weight: 700; display: flex; justify-content: space-between; }
+        .chat-messages { height: 320px; padding: 15px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
+        .msg { max-width: 85%; padding: 12px 15px; border-radius: 15px; font-size: 0.95rem; animation: float 0.3s ease-out;}
+        .msg-bot { background: white; border-left: 4px solid var(--primary); align-self: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        .msg-user { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; align-self: flex-end; box-shadow: 0 2px 5px rgba(255,122,0,0.3);}
+        .chat-input-area { padding: 15px; display: flex; gap: 5px; border-top: 1px solid #eee; background: white;}
+        .chat-input-area input { flex: 1; padding: 10px 15px; border-radius: 20px; border: 2px solid #ddd; outline: none; transition: border 0.3s;}
+        .chat-input-area input:focus { border-color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div id="paw-container"></div>
+    <div class="running-dog">🐕</div>
+    <div class="peek-cat">🐱</div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <img src="logo.png" alt="Aditya Dog Point Logo" class="main-logo" onerror="this.src='https://placehold.co/200x80/FF7A00/FFFFFF?text=Aditya+Dog+Point';">
+            </div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#shop">Shop</a>
+                <a href="#breeds">Breeds</a>
+                <a href="#location">Store Location</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h2>Aditya Dog Point</h2>
+            <span class="highlight">Ghazipur's Best & Most Trusted Pet Shop 🏆</span>
+            <p>Humare yahan 100% original breeds, premium dog/cat food, aur top-quality accessories milti hain. Aapke pet ki har choti-badi zaroorat ke liye ek hi perfect jagah! Ghar jaisa pyaar, best care ke sath.</p>
+            <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'});" class="btn">Explore Products</button>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="section-title" id="shop">
+            <h2>Our Premium Supplies</h2>
+        </div>
+        
+        <div class="grid">
+            
+            <div class="card">
+                <img src="https://images.pexels.com/photos/6589021/pexels-photo-6589021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Premium Dog Food">
+                <div class="card-body">
+                    <h3>Premium Dog Food</h3>
+                    <p>Nutritious food for all dog breeds. Best brands available.</p>
+                    <div class="brand-tags">
+                        <span class="brand-tag" onclick="showProduct('Royal Canin', '₹2,450', 'https://images.pexels.com/photos/6589021/pexels-photo-6589021.jpeg?auto=compress&cs=tinysrgb&w=600')">Royal Canin</span>
+                        <span class="brand-tag" onclick="showProduct('Pedigree', '₹1,100', 'https://images.pexels.com/photos/6589021/pexels-photo-6589021.jpeg?auto=compress&cs=tinysrgb&w=600')">Pedigree</span>
+                        <span class="brand-tag" onclick="showProduct('Farmina N&D', '₹2,800', 'https://images.pexels.com/photos/6589021/pexels-photo-6589021.jpeg?auto=compress&cs=tinysrgb&w=600')">Farmina N&D</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/17200230/pexels-photo-17200230.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cat Food & Treats">
+                <div class="card-body">
+                    <h3>Cat Food & Treats</h3>
+                    <p>Delicious dry food, wet pouches, and creamy treats for cats.</p>
+                    <div class="brand-tags">
+                        <span class="brand-tag" onclick="showProduct('Whiskas', '₹450 / 1.2kg', 'https://images.pexels.com/photos/17200230/pexels-photo-17200230.jpeg?auto=compress&cs=tinysrgb&w=600')">Whiskas</span>
+                        <span class="brand-tag" onclick="showProduct('Me-O', '₹380', 'https://images.pexels.com/photos/17200230/pexels-photo-17200230.jpeg?auto=compress&cs=tinysrgb&w=600')">Me-O</span>
+                        <span class="brand-tag" onclick="showProduct('Purepet Cat', '₹300', 'https://images.pexels.com/photos/17200230/pexels-photo-17200230.jpeg?auto=compress&cs=tinysrgb&w=600')">Purepet</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/7310224/pexels-photo-7310224.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Accessories">
+                <div class="card-body">
+                    <h3>Accessories</h3>
+                    <p>Heavy-duty leashes, body harness, and grooming kits.</p>
+                    <div class="brand-tags">
+                        <span class="brand-tag" onclick="showProduct('Body Harness', '₹850', 'https://images.pexels.com/photos/7310224/pexels-photo-7310224.jpeg?auto=compress&cs=tinysrgb&w=600')">Harness</span>
+                        <span class="brand-tag" onclick="showProduct('Nail Clipper', '₹250', 'https://images.pexels.com/photos/7310224/pexels-photo-7310224.jpeg?auto=compress&cs=tinysrgb&w=600')">Clippers</span>
+                        <span class="brand-tag" onclick="showProduct('Grooming Brush', '₹300', 'https://images.pexels.com/photos/7310224/pexels-photo-7310224.jpeg?auto=compress&cs=tinysrgb&w=600')">Brushes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/4033325/pexels-photo-4033325.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Luxury Pet Beds">
+                <div class="card-body">
+                    <h3>Luxury Beds & Pet Sofa</h3>
+                    <p>Give your pet the ultimate comfort with soft orthopedic beds.</p>
+                    <div class="brand-tags">
+                        <span class="brand-tag" onclick="showProduct('Velvet Bed', '₹1,500', 'https://images.pexels.com/photos/4033325/pexels-photo-4033325.jpeg?auto=compress&cs=tinysrgb&w=600')">Round Bed</span>
+                        <span class="brand-tag" onclick="showProduct('Pet Sofa', '₹4,500', 'https://images.pexels.com/photos/4033325/pexels-photo-4033325.jpeg?auto=compress&cs=tinysrgb&w=600')">Velvet Sofa</span>
+                        <span class="brand-tag" onclick="showProduct('Cooling Mat', '₹950', 'https://images.pexels.com/photos/4033325/pexels-photo-4033325.jpeg?auto=compress&cs=tinysrgb&w=600')">Cooling Mat</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/4588047/pexels-photo-4588047.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Toys and Chews">
+                <div class="card-body">
+                    <h3>Toys & Chews</h3>
+                    <p>Keep them active with interactive rope toys and healthy bones.</p>
+                    <div class="brand-tags">
+                        <span class="brand-tag" onclick="showProduct('Kong Toy', '₹850', 'https://images.pexels.com/photos/4588047/pexels-photo-4588047.jpeg?auto=compress&cs=tinysrgb&w=600')">Kong Toy</span>
+                        <span class="brand-tag" onclick="showProduct('Chew Bones', '₹120 / piece', 'https://images.pexels.com/photos/4588047/pexels-photo-4588047.jpeg?auto=compress&cs=tinysrgb&w=600')">Bones</span>
+                        <span class="brand-tag" onclick="showProduct('Rope Toy', '₹150', 'https://images.pexels.com/photos/4588047/pexels-photo-4588047.jpeg?auto=compress&cs=tinysrgb&w=600')">Rope Toys</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/6235116/pexels-photo-6235116.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dog Medicine">
+                <div class="card-body">
+                    <h3>Health & Medicine</h3>
+                    <p>Supplements and tick shampoos for complete pet health.</p>
+                    <div class="brand-tags">
+                        <span class="brand-tag" onclick="showProduct('Tick Shampoo', '₹450', 'https://images.pexels.com/photos/6235116/pexels-photo-6235116.jpeg?auto=compress&cs=tinysrgb&w=600')">Shampoo</span>
+                        <span class="brand-tag" onclick="showProduct('Calcium Syrup', '₹300', 'https://images.pexels.com/photos/6235116/pexels-photo-6235116.jpeg?auto=compress&cs=tinysrgb&w=600')">Calcium</span>
+                        <span class="brand-tag" onclick="showProduct('Multivitamin', '₹550', 'https://images.pexels.com/photos/6235116/pexels-photo-6235116.jpeg?auto=compress&cs=tinysrgb&w=600')">Vitamins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title" id="breeds">
+            <h2>World's Popular Breeds</h2>
+        </div>
+
+        <h3 class="category-sub">🐶 Mega Dog Breeds Collection</h3>
+        <div class="breeds-grid">
+            <div class="breed-card" onclick="showProduct('German Shepherd', '₹20k - ₹35k', 'https://images.pexels.com/photos/333083/pexels-photo-333083.jpeg?w=400')"><img src="https://images.pexels.com/photos/333083/pexels-photo-333083.jpeg?w=400" alt="German Shepherd"><h4>German Shepherd</h4></div>
+            <div class="breed-card" onclick="showProduct('Rottweiler', '₹25k - ₹40k', 'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?w=400')"><img src="https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?w=400" alt="Rottweiler"><h4>Rottweiler</h4></div>
+            <div class="breed-card" onclick="showProduct('Bulldog', '₹30k - ₹45k', 'https://images.pexels.com/photos/151511/pexels-photo-151511.jpeg?w=400')"><img src="https://images.pexels.com/photos/151511/pexels-photo-151511.jpeg?w=400" alt="Bulldog"><h4>Bulldog</h4></div>
+            <div class="breed-card" onclick="showProduct('Labrador', '₹20k - ₹35k', 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?w=400')"><img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?w=400" alt="Labrador"><h4>Labrador</h4></div>
+            <div class="breed-card" onclick="showProduct('Golden Retriever', '₹25k - ₹40k', 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400')"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400" alt="Golden Retriever"><h4>Golden Retriever</h4></div>
+            <div class="breed-card" onclick="showProduct('Pug', '₹15k - ₹25k', 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400')"><img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400" alt="Pug"><h4>Pug</h4></div>
+            <div class="breed-card" onclick="showProduct('Siberian Husky', '₹40k - ₹60k', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400')"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400" alt="Husky"><h4>Siberian Husky</h4></div>
+            <div class="breed-card" onclick="showProduct('Beagle', '₹20k - ₹30k', 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400')"><img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400" alt="Beagle"><h4>Beagle</h4></div>
+            <div class="breed-card" onclick="showProduct('Doberman', '₹18k - ₹30k', 'https://images.unsplash.com/photo-1626079975344-77e8a946e30b?w=400')"><img src="https://images.unsplash.com/photo-1626079975344-77e8a946e30b?w=400" alt="Doberman"><h4>Doberman</h4></div>
+            <div class="breed-card" onclick="showProduct('Pomeranian', '₹8k - ₹15k', 'https://images.unsplash.com/photo-1510337550647-e84f83e34178?w=400')"><img src="https://images.unsplash.com/photo-1510337550647-e84f83e34178?w=400" alt="Pomeranian"><h4>Pomeranian</h4></div>
+            <div class="breed-card" onclick="showProduct('Pitbull', '₹15k - ₹28k', 'https://images.unsplash.com/photo-1601758124096-1fd661873b93?w=400')"><img src="https://images.unsplash.com/photo-1601758124096-1fd661873b93?w=400" alt="Pitbull"><h4>Pitbull</h4></div>
+            <div class="breed-card" onclick="showProduct('Shih Tzu', '₹20k - ₹35k', 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400')"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400" alt="Shih Tzu"><h4>Shih Tzu</h4></div>
+            <div class="breed-card" onclick="showProduct('Boxer', '₹18k - ₹30k', 'https://images.unsplash.com/photo-1554692909-7756f7ce9bb1?w=400')"><img src="https://images.unsplash.com/photo-1554692909-7756f7ce9bb1?w=400" alt="Boxer"><h4>Boxer</h4></div>
+            <div class="breed-card" onclick="showProduct('Great Dane', '₹25k - ₹45k', 'https://images.unsplash.com/photo-1534361960057-19889db9621e?w=400')"><img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?w=400" alt="Great Dane"><h4>Great Dane</h4></div>
+            <div class="breed-card" onclick="showProduct('Chow Chow', '₹35k - ₹55k', 'https://images.unsplash.com/photo-1588689531126-7871b6d08df6?w=400')"><img src="https://images.unsplash.com/photo-1588689531126-7871b6d08df6?w=400" alt="Chow Chow"><h4>Chow Chow</h4></div>
+            <div class="breed-card" onclick="showProduct('Dalmatian', '₹15k - ₹25k', 'https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=400')"><img src="https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=400" alt="Dalmatian"><h4>Dalmatian</h4></div>
+            <div class="breed-card" onclick="showProduct('Cocker Spaniel', '₹18k - ₹30k', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400')"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400" alt="Cocker Spaniel"><h4>Cocker Spaniel</h4></div>
+            <div class="breed-card" onclick="showProduct('Chihuahua', '₹15k - ₹25k', 'https://images.unsplash.com/photo-1510337550647-e84f83e34178?w=400')"><img src="https://images.unsplash.com/photo-1510337550647-e84f83e34178?w=400" alt="Chihuahua"><h4>Chihuahua</h4></div>
+            <div class="breed-card" onclick="showProduct('Dachshund', '₹12k - ₹20k', 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400')"><img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400" alt="Dachshund"><h4>Dachshund</h4></div>
+            <div class="breed-card" onclick="showProduct('Corgi', '₹40k - ₹70k', 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400')"><img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400" alt="Corgi"><h4>Corgi</h4></div>
+        </div>
+
+        <h3 class="category-sub">🐱 Mega Cat Breeds Collection</h3>
+        <div class="breeds-grid" style="margin-bottom: 60px;">
+            <div class="breed-card" onclick="showProduct('Bengal Cat', '₹20k - ₹40k', 'https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?w=400')"><img src="https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?w=400" alt="Bengal Cat"><h4>Bengal Cat</h4></div>
+            <div class="breed-card" onclick="showProduct('Persian Cat', '₹12k - ₹25k', 'https://images.pexels.com/photos/177809/pexels-photo-177809.jpeg?w=400')"><img src="https://images.pexels.com/photos/177809/pexels-photo-177809.jpeg?w=400" alt="Persian Cat"><h4>Persian Cat</h4></div>
+            <div class="breed-card" onclick="showProduct('Siamese Cat', '₹10k - ₹20k', 'https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?w=400')"><img src="https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?w=400" alt="Siamese Cat"><h4>Siamese Cat</h4></div>
+            <div class="breed-card" onclick="showProduct('Maine Coon', '₹40k - ₹80k', 'https://images.pexels.com/photos/1543801/pexels-photo-1543801.jpeg?w=400')"><img src="https://images.pexels.com/photos/1543801/pexels-photo-1543801.jpeg?w=400" alt="Maine Coon"><h4>Maine Coon</h4></div>
+            <div class="breed-card" onclick="showProduct('Ragdoll Cat', '₹30k - ₹50k', 'https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?w=400')"><img src="https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?w=400" alt="Ragdoll"><h4>Ragdoll</h4></div>
+            <div class="breed-card" onclick="showProduct('British Shorthair', '₹25k - ₹40k', 'https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?w=400')"><img src="https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?w=400" alt="British Shorthair"><h4>British Shorthair</h4></div>
+            <div class="breed-card" onclick="showProduct('Sphynx (Hairless)', '₹60k - ₹1 Lakh', 'https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400')"><img src="https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400" alt="Sphynx"><h4>Sphynx</h4></div>
+            <div class="breed-card" onclick="showProduct('Scottish Fold', '₹35k - ₹60k', 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400')"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400" alt="Scottish Fold"><h4>Scottish Fold</h4></div>
+            <div class="breed-card" onclick="showProduct('Russian Blue', '₹30k - ₹50k', 'https://images.unsplash.com/photo-1606214174585-f12bd258f2d5?w=400')"><img src="https://images.unsplash.com/photo-1606214174585-f12bd258f2d5?w=400" alt="Russian Blue"><h4>Russian Blue</h4></div>
+            <div class="breed-card" onclick="showProduct('Abyssinian', '₹25k - ₹45k', 'https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=400')"><img src="https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=400" alt="Abyssinian"><h4>Abyssinian</h4></div>
+        </div>
+
+        <div class="section-title" id="location">
+            <h2>Visit Our Store</h2>
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115162.24759088656!2d83.49392223730248!3d25.578663806338423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3991f893e3e01083%3A0xea21d11db8455856!2sGhazipur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1711956555000!5m2!1sen!2sin" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </main>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProduct()">&times;</span>
+            <img id="modalImg" src="" alt="Product" class="modal-img">
+            <h3 id="modalTitle" style="font-size:1.8rem; font-weight:800;">Product Name</h3>
+            <p id="modalPrice" style="color: var(--primary); font-size: 1.6rem; font-weight: 800; margin-bottom:15px;">₹0</p>
+            <a href="https://wa.me/919415962062" target="_blank" class="modal-btn">Send Inquiry on WhatsApp</a>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="container">
+            <img src="logo.png" alt="Aditya Dog Point Logo" class="footer-logo" onerror="this.style.display='none'">
+            <div class="footer-info">
+                <p>📍 Plot No-8, Aditya Dog Point, Rajendra Nagar Colony, Peer Nagar, Ghazipur, UP - 233001</p>
+                <p>📞 +91 9415962062</p>
+                <p>⏰ Open Daily: 9:00 AM - 9:00 PM</p>
+            </div>
+            <div class="social-btns">
+                <a href="https://wa.me/919415962062" target="_blank" class="social-btn btn-wa">Chat on WhatsApp</a>
+                <a href="https://www.instagram.com/adityadogpoint" target="_blank" class="social-btn btn-ig">Follow Instagram</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Aditya Dog Point. Ghazipur's No.1 Pet Shop.
+            </div>
+        </div>
+    </footer>
+
+    <div class="chat-widget">
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <h4>Aditya Smart AI</h4>
+                <button onclick="toggleChat()" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" id="userInput" placeholder="Ask AI..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()" style="background:var(--primary); border:none; color:white; padding:10px; border-radius:50%; cursor:pointer;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+        <button class="chat-toggle" onclick="toggleChat()">
+            <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a3 3 0 0 1 3 3v1h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v1a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1H5a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h1v-1a3 3 0 0 1 3-3h1V5.73A2 2 0 1 1 12 2z"/></svg>
+        </button>
+    </div>
+
+    <script>
+        // Floating Paws
+        const pawContainer = document.getElementById('paw-container');
+        const paws = ['🐾', '🦴', '🐾'];
+        for(let i=0; i<15; i++){
+            let paw = document.createElement('div');
+            paw.className = 'paw-print';
+            paw.innerText = paws[Math.floor(Math.random() * paws.length)];
+            paw.style.left = Math.random() * 100 + 'vw';
+            paw.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            paw.style.animationDelay = (Math.random() * 5) + 's';
+            pawContainer.appendChild(paw);
+        }
+
+        // Modal
+        var modal = document.getElementById("productModal");
+        function showProduct(title, price, imgUrl) {
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalPrice").innerText = price;
+            document.getElementById("modalImg").src = imgUrl;
+            modal.style.display = "flex";
+        }
+        function closeProduct() { modal.style.display = "none"; }
+        window.onclick = function(e) { if(e.target == modal) closeProduct(); }
+
+        // Chatbot
+        var chatMessages = document.getElementById("chatMessages");
+        var chatBox = document.getElementById("chatBox");
+
+        function toggleChat() {
+            chatBox.style.display = (chatBox.style.display === "flex") ? "none" : "flex";
+            if(chatMessages.innerHTML === "") {
+                addMessage("Namaste! 🙏 Main Aditya Dog Point ka AI Assistant hoon. Poochiye aapko kya chahiye?", "msg-bot");
+            }
+        }
+
+        function sendMessage() {
+            var input = document.getElementById("userInput");
+            var text = input.value.trim();
+            if(!text) return;
+            addMessage(text, "msg-user");
+            input.value = "";
+            
+            var typingDiv = document.createElement("div");
+            typingDiv.className = "msg msg-bot";
+            typingDiv.innerText = "Thinking...";
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                chatMessages.removeChild(typingDiv);
+                var reply = getSmartResponse(text);
+                addMessage(reply, "msg-bot");
+            }, 1000);
+        }
+
+        function addMessage(text, type) {
+            var div = document.createElement("div");
+            div.className = "msg " + type;
+            div.innerText = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getSmartResponse(text) {
+            text = text.toLowerCase();
+            if(text.includes("food") || text.includes("khana")) return "Humare yahan Royal Canin, Drools aur Pedigree ke premium food stocks hain! Shop card par click karein.";
+            if(text.includes("price") || text.includes("kitna")) return "Har product aur breed ka price alag hai, aap photo par click karke direct rate dekh sakte hain!";
+            if(text.includes("bimari") || text.includes("health")) return "Pet ki health ke liye humare paas vitamins aur shampoos hain. Problem zyada ho toh Vet ko dikhayein.";
+            if(text.includes("breed") || text.includes("dog")) return "Duniya ke 20+ top breeds humare yahan available hain! Niche gallery mein scroll karein.";
+            if(text.includes("cat") || text.includes("billi")) return "Humare paas Bengal, Persian, aur Maine Coon Cats available hain. Niche gallery check karein!";
+            if(text.includes("bed") || text.includes("sofa") || text.includes("toy")) return "Velvet beds, sofas aur khelne wale Toys (kong, rope) sab mil jayenge. Shop section check karein!";
+            if(text.includes("location") || text.includes("map") || text.includes("address")) return "Humari shop Ghazipur mein hai. Niche ek bada Google Map lagaya gaya hai wahan se location dekh lijiye!";
+            return "Main ek AI hoon, jyada complex sawal ke liye kripya humein WhatsApp karein (9415962062)!";
+        }
+    </script>
+</body>
+</html>
